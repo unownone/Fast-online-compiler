@@ -80,7 +80,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $.ajax({
-      url:"/getLangs",
+      url:"https://ftljh949zf.execute-api.ap-south-1.amazonaws.com/stage/getLangs",
       type:"GET",
       success:function(data){
         data.forEach(function(element){
@@ -99,7 +99,7 @@
         values['args'] =args;
         $.ajax({
             type: "POST",
-            url : "/compile",
+            url : "https://ftljh949zf.execute-api.ap-south-1.amazonaws.com/stage/compile",
             dataType:"json",
             data: values,
             beforeSend: function(){

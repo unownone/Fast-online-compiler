@@ -1,0 +1,10 @@
+{
+    "stage": {
+        "app_function": "app.app",
+        "aws_region": "ap-south-1",
+        "profile_name": "default",
+        "project_name": "fast-online-com",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-flask-compiler"
+    }
+}

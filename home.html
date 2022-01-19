@@ -68,7 +68,7 @@
   <textarea id="code" class="form-control" rows="5" columns="100" style="background-color:#2F4F4F;color:#e68f3e" id="comment" placeholder="Enter code"></textarea><br>
   <textarea id="args" class="form-control" rows="5" id="comment"  style="background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
   <select class="form-select form-select-lg mb-3" name="language" id="lang" style="background-color:#2F4F4F;color:#e68f3e">
-    <option value=""></option>
+    <option value="">Select Language</option>
   </select>
   <button type="button" class="btn btn-success" id="submit">Compile</button>
 </form>
@@ -79,6 +79,15 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
+    $.ajax({
+      url:"/getLangs",
+      type:"GET",
+      success:function(data){
+        data.forEach(function(element){
+          $("#lang").append("<option value='"+element+"'>"+element+"</option>");
+        });
+      }
+    });
     $("#submit").click(function(){
         var values = {};
         $.each($('#formio').serializeArray(), function(i, field) {
@@ -90,7 +99,7 @@
         values['args'] =args;
         $.ajax({
             type: "POST",
-            url : "",
+            url : "/compile",
             dataType:"json",
             data: values,
             beforeSend: function(){

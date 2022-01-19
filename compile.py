@@ -10,7 +10,7 @@ import os
 from uuid import uuid4
 
 def runPython(code,args=''):
-    path =f'codes/python/{uuid4()}.py'
+    path =f'/tmp/codes/python/{uuid4()}.py'
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)
@@ -19,7 +19,7 @@ def runPython(code,args=''):
     return process.decode('utf-8')
 
 def runJava(code,args=''):
-    path =f'codes/java/{uuid4()}.java'
+    path =f'/tmp/codes/java/{uuid4()}.java'
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)
@@ -29,7 +29,7 @@ def runJava(code,args=''):
     return process.decode('utf-8')
 
 def runCpp(code,args=''):
-    path =f'codes/cpp/{uuid4()}.cpp'
+    path =f'/tmp/codes/cpp/{uuid4()}.cpp'
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)
@@ -42,7 +42,7 @@ def runCpp(code,args=''):
     return process.decode('utf-8')
 
 def runC(code,args=''):
-    path =f'codes/cpp/{uuid4()}.cpp'
+    path =f'/tmp/codes/c/{uuid4()}.cpp'
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)

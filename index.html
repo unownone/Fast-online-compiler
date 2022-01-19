@@ -90,23 +90,22 @@
     });
     $("#submit").click(function(){
         var values = {};
-        $.each($('#formio').serializeArray(), function(i, field) {
-            values[field.name] = field.value;
-        });
-        var code = $("textarea#code").val();
-        var args = $("textarea#args").val();
-        values['code'] =code;
-        values['args'] =args;
+        values['lang'] = $("#lang").val();
+        values['code'] = $("textarea#code").val();
+        values['args'] = $("textarea#args").val();
+        console.log(values)
         $.ajax({
             type: "POST",
             url : "https://ftljh949zf.execute-api.ap-south-1.amazonaws.com/stage/compile",
-            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            dataType:"Application/json",
             data: values,
             beforeSend: function(){
                 $(".out").addClass("hidden");
                 $("#loader").removeClass("hidden");
             },
             success: function(data){
+                console.log(data);
                 data = data['response'];
                 console.log(data);
                 $("#push").html(data);

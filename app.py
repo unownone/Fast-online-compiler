@@ -12,7 +12,8 @@ def get_supported_languages():
 
 
 @app.post('/compile')
-def get_compiled_code(input:dict):    
+def get_compiled_code():
+    input = request.json   
     try:
         return jsonify({
             'response': main(input['code'],input['lang'],input['args'])

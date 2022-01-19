@@ -93,21 +93,19 @@
         values['lang'] = $("#lang").val();
         values['code'] = $("textarea#code").val();
         values['args'] = $("textarea#args").val();
-        console.log(values)
+        values = JSON.stringify(values);
         $.ajax({
             type: "POST",
             url : "https://ftljh949zf.execute-api.ap-south-1.amazonaws.com/stage/compile",
-            contentType: "application/json; charset=utf-8",
-            dataType:"Application/json",
+            contentType: "application/json",
+            dataType:"json",
             data: values,
             beforeSend: function(){
                 $(".out").addClass("hidden");
                 $("#loader").removeClass("hidden");
             },
             success: function(data){
-                console.log(data);
                 data = data['response'];
-                console.log(data);
                 $("#push").html(data);
                 $("#loader").addClass("hidden");
                 $(".out").removeClass("hidden");

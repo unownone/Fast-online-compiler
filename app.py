@@ -21,7 +21,7 @@ def get_compiled_code():
     except:
         traceback.print_exc()
         return jsonify(
-            {'error':'Invalid Input!'}
+            {'response':'Invalid Input!'}
             )
 
 @app.route('/')

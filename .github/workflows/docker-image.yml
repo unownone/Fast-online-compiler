@@ -18,12 +18,16 @@ jobs:
       - name: Install doctl 
         uses: digitalocean/action-doctl@v2
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - name: Log in to DO Container Registry 
-        run: doctl registry login --expiry-seconds 600
-      - name: Tag image 
-        run:
-          docker tag sample/my-page \
-          registry.digitalocean.com/projects/fast-compiler:${{github.event.inputs.version }}
-      - name: Push image to DO Container Registry 
-        run: docker push registry.digitalocean.com/projects/fast-compiler:${{ github.event.inputs.version }}
+          # Below you must provide variables for your Heroku app.
+
+          # The email address associated with your Heroku account.
+          # If you don't want to use repository secrets (which is recommended) you can do:
+          # email: my.email@example.com
+          email: ${{ secrets.HEROKU_EMAIL }}
+          
+          # Heroku API key associated with provided user's email.
+          # Api Key is available under your Heroku account settings.
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          
+          # Name of the heroku application to which the build is to be sent.
+          heroku_app_name: fast-compiler

@@ -66,7 +66,7 @@
 <div class="container justify-content-center" style="max-width:50%">
 <form id="formio" class="row" style="margin-top:10px">
   <textarea id="code" class="form-control" rows="5" columns="100" style="background-color:#2F4F4F;color:#e68f3e" id="comment" placeholder="Enter code"></textarea><br>
-  <textarea id="args" class="form-control" rows="5" id="comment"  style="background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
+  <textarea id="args" class="form-control" rows="2" id="comment"  style="background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
   <select class="form-select form-select-lg mb-3" name="language" id="lang" style="background-color:#2F4F4F;color:#e68f3e">
     <option value="">Select Language</option>
   </select>
@@ -80,7 +80,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $.ajax({
-      url:"https://ftljh949zf.execute-api.ap-south-1.amazonaws.com/stage/getLangs",
+      url:"/api/getLangs",
       type:"GET",
       success:function(data){
         data.forEach(function(element){
@@ -96,7 +96,7 @@
         values = JSON.stringify(values);
         $.ajax({
             type: "POST",
-            url : "https://ftljh949zf.execute-api.ap-south-1.amazonaws.com/stage/compile",
+            url : "/api/compile",
             contentType: "application/json",
             dataType:"json",
             data: values,
@@ -106,7 +106,7 @@
             },
             success: function(data){
                 data = data['response'];
-                $("#push").html(data);
+                $("#push").html(data.replace("\n","<br>"));
                 $("#loader").addClass("hidden");
                 $(".out").removeClass("hidden");
             }

@@ -14,7 +14,7 @@ def runPython(code,args=''):
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)
-    process = Popen(['python',path],stdin=PIPE,stdout=PIPE)
+    process = Popen(['python3',path],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
     return process.decode('utf-8')
 
@@ -23,6 +23,7 @@ def runJava(code,args=''):
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)
+    print(path)
     process = Popen(['javac',path],stdin=PIPE,stdout=PIPE)
     process = Popen(['java',path],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
@@ -34,23 +35,23 @@ def runCpp(code,args=''):
     with open(path,'w') as file:
         file.write(code)
     pathname = '/'.join((pp:=path.split('/'))[:-1])
-    outpath = pathname+'/' + '.'.join(pp.split('.')[:-1])
-    process = Popen(['g++',path,'-o',+outpath],stdin=PIPE,stdout=PIPE)
+    outpath = pathname+'/' + '.'.join(pp[-1].split('.')[:-1])
+    process = Popen(['g++',path,'-o',outpath],stdin=PIPE,stdout=PIPE)
     time.sleep(1)
-    process = Popen(['./'+outpath],stdin=PIPE,stdout=PIPE)
+    process = Popen([outpath],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
     return process.decode('utf-8')
 
 def runC(code,args=''):
-    path =f'/tmp/codes/c/{uuid4()}.cpp'
+    path =f'/tmp/codes/c/{uuid4()}.c'
+    print("\n\n\n",path,"\n\n\n")
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:
         file.write(code)
     pathname = '/'.join((pp:=path.split('/'))[:-1])
-    outpath = pathname+'/' + '.'.join(pp.split('.')[:-1])
+    outpath = pathname+'/' + '.'.join(pp[-1].split('.')[:-1])
     process = Popen(['gcc',path,'-o',outpath],stdin=PIPE,stdout=PIPE)
-    time.sleep(1)
-    process = Popen(['./'+outpath],stdin=PIPE,stdout=PIPE)
+    process = Popen(['.'+outpath],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
     return process.decode('utf-8')
 

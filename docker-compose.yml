@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  web:
+    container_name: flask_compiler
+    tty: true
+    build: .
+    command: gunicorn --bind :5000 -w 4 wsgi:app --reload
+    expose:
+      - 5000
+    volumes:
+      - .:/code
+    environment:
+      FLASK_ENV: production
+    depends_on:
+      - nginx
+  nginx:
+    container_name: nginx_compiler
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"

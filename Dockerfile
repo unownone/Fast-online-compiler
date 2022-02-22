@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 COPY . .
 EXPOSE 5000
-CMD ["gunicorn -b :5000 -w 4 wsgi:app --reload"]
+CMD gunicorn -b :5000 -w 4 wsgi:app --reload

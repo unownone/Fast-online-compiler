@@ -1,6 +1,6 @@
 # Fast-Compiler
 
-## [Hosted at DigitalOcean](http://139.59.52.61/)
+### [Hosted at DigitalOcean](http://139.59.52.61/)
 ## Compile code fast on the cloud! 
 
 ## Language Support Currently: 
@@ -32,8 +32,7 @@ or
 
 ## [Use Front End](http://139.59.52.61/) : 
     at index : \
-
-    ![compile](./demos/demo.gif)
+![compile](./demos/demo.gif)
 
 # Setup on Local:
 

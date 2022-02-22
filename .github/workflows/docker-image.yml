@@ -1,6 +1,6 @@
 env:
   REGISTRY: "registry.digitalocean.com/unownone"
-  IMAGE_NAME: "fast-compiler"
+  IMAGE_NAME: "fast_compiler"
 
 name: Build and publish manually
 

@@ -2,7 +2,7 @@ env:
   REGISTRY: "registry.digitalocean.com/unownone"
   IMAGE_NAME: "fastcompiler"
 
-name: Build and publish manually
+name: Build and publish
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         run: doctl registry login --expiry-seconds 600
       - name: Tag image 
         run:
-          docker tag sample/my-page \
+          docker tag $(echo $REGISTRY)/$(echo $IMAGE_NAME) \
           $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
       - name: Push image to DO Container Registry 
         run: docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)

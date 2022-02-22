@@ -14,7 +14,7 @@ jobs:
       - name: Checkout the repo 
         uses: actions/checkout@v2
       - name: Build image 
-        run: docker build -t sample/my-page .
+        run: docker build -t projects/fast-compiler .
       - name: Install doctl 
         uses: digitalocean/action-doctl@v2
         with:

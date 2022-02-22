@@ -1,4 +1,5 @@
 # Fast-Compiler
+[![Build and publish](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml/badge.svg)](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml)
 
 ### [Hosted at DigitalOcean](http://139.59.52.61/)
 ## Compile code fast on the cloud! 

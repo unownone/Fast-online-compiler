@@ -5,7 +5,7 @@
 ### [Hosted at DigitalOcean](http://139.59.52.61/)
 <a href="https://youtu.be/eZSkH8Ox26k" title="Fast Compiler">
   <p align="center">
-    <img width="100%" src="https://youtu.be/eZSkH8Ox26k" alt="Fast compiler Demo"/>
+    <img width="100%" src="https://i.ytimg.com/vi/eZSkH8Ox26k/mqdefault.jpg" alt="Fast compiler Demo"/>
   </p>
 </a>
 

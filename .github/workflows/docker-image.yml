@@ -24,6 +24,8 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
           envs: IMAGE_NAME,REGISTRY,GITHUB_SHA,COMMAND
           script: |
+            #Move into directory
+            cd Fast-online-compiler
             # Pull latest update
             git pull
             # Stop running container

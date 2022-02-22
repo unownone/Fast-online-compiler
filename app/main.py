@@ -13,7 +13,17 @@ def get_supported_languages():
 
 @app.post('/api/compile')
 def get_compiled_code():
-    input = request.json if request.json is not None else {}  
+    dataStream = {
+        'application/json':request.json,
+        'application/x-www-form-urlencoded':dict(request.form),
+    }
+    if request.headers.get('Content-Type') in dataStream:
+        input = dataStream.get(request.headers.get('Content-Type'))
+    else:
+        return jsonify({
+        'response':'Server Doesnt support this type of content type'
+        }, 400)
+    print("\n"*10,input) 
     try:
         return jsonify({
             'response': main(input.get('code',ret('code')),

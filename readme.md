@@ -1,6 +1,15 @@
 # Fast-Compiler
+[![Build and publish](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml/badge.svg)](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml)
 
-## [Hosted at DigitalOcean](http://139.59.52.61/)
+# Demo:
+### [Hosted at DigitalOcean](http://139.59.52.61/)
+<a href="https://youtu.be/eZSkH8Ox26k" title="Fast Compiler">
+  <p align="center">
+    <img width="100%" src="https://i.ytimg.com/vi/eZSkH8Ox26k/mqdefault.jpg" alt="Fast compiler Demo"/>
+  </p>
+</a>
+
+
 ## Compile code fast on the cloud! 
 
 ## Language Support Currently: 
@@ -32,8 +41,7 @@ or
 
 ## [Use Front End](http://139.59.52.61/) : 
     at index : \
-
-    ![compile](./demos/demo.gif)
+![compile](./demos/demo.gif)
 
 # Setup on Local:
 

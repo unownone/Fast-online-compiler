@@ -5,11 +5,9 @@ env:
 name: Build and publish
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Image version'
-        required: true
+  push:
+    branches:
+      - master
 
 jobs:
   build_and_push:

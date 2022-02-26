@@ -19,6 +19,22 @@
 - Java
 - More coming soon!
 
+## Feature RoadMap
+- Add Languages:
+  - Go
+  - Javascript
+  - C#
+  - Swift
+- Add Login/Signup:
+  - Based on API keys
+  - generate API keys to use on multi platforms
+  - Store Code.
+- Multi Platform Integration:
+  - Add GDrive Integration to store code in GDrive
+  - Add OneDrive Integration to store code in OneDrive
+  - Add telegram integration to compile code from telegram
+- More!!
+
 ## API End Points:
 - ```
     /api/getLangs
@@ -60,4 +76,3 @@ or
     Server will be running at localhost:5000
     
     - Set up languages for proper compilation/running
-

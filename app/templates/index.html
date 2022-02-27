@@ -65,8 +65,8 @@
 <body>
 <div class="container justify-content-center" style="max-width:50%">
 <form id="formio" class="row" style="margin-top:10px">
-  <textarea id="code" class="form-control" rows="5" columns="100" style="background-color:#2F4F4F;color:#e68f3e" id="comment" placeholder="Enter code"></textarea><br>
-  <textarea id="args" class="form-control" rows="2" id="comment"  style="background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
+  <textarea oninput="auto_grow(this)" id="code" class="form-control" rows="1" columns="100" style="background-color:#2F4F4F;color:#e68f3e" id="comment" placeholder="Enter code"></textarea><br>
+  <textarea oninput="auto_grow(this)" id="args" class="form-control" rows="2" id="comment"  style="background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
   <select class="form-select form-select-lg mb-3" name="language" id="lang" style="background-color:#2F4F4F;color:#e68f3e">
     <option value="">Select Language</option>
   </select>
@@ -78,6 +78,18 @@
 <div class="lds-dual-ring hidden overlay col-md-4 col-md-offset-4 row" id="loader"></div>
 </div>
 <script type="text/javascript">
+    function auto_grow(element) {
+      console.log(element);
+      if (element.scrollHeight < 50){
+        element.style.height = "55px";
+      }
+      else if(element.scrollHeight > 500){
+        element.style.height = "490px";
+      }
+      else{
+        element.style.height = element.scrollHeight + "px";
+      }
+  }
   $(document).ready(function(){
     $.ajax({
       url:"/api/getLangs",

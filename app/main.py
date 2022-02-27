@@ -1,7 +1,6 @@
 from flask import jsonify,request,render_template
 from app.compile import main, SUPPORTED_LANGS
 import traceback
-import json
 from app import app,login
 import time 
 from app.models import CodeArchives
@@ -47,12 +46,6 @@ def get_compiled_code():
         return jsonify(
             {'response':'Something Unexcepted Happened! Try again later!'}
             )
-
-
-def ret(dat):
-    return jsonify({
-        'response':'Data Missing: '+dat
-    })
 
 
 @app.route('/')

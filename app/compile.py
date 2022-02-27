@@ -16,6 +16,7 @@ def runPython(code,args=''):
         file.write(code)
     process = Popen(['python3',path],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
+    os.remove(path)
     return process.decode('utf-8')
 
 def runJava(code,args=''):
@@ -27,6 +28,7 @@ def runJava(code,args=''):
     process = Popen(['javac',path],stdin=PIPE,stdout=PIPE)
     process = Popen(['java',path],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
+    os.remove(path)
     return process.decode('utf-8')
 
 def runCpp(code,args=''):
@@ -40,6 +42,8 @@ def runCpp(code,args=''):
     time.sleep(1)
     process = Popen([outpath],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
+    os.remove(path)
+    os.remove(outpath)
     return process.decode('utf-8')
 
 def runC(code,args=''):
@@ -51,8 +55,10 @@ def runC(code,args=''):
     pathname = '/'.join((pp:=path.split('/'))[:-1])
     outpath = pathname+'/' + '.'.join(pp[-1].split('.')[:-1])
     process = Popen(['gcc',path,'-o',outpath],stdin=PIPE,stdout=PIPE)
-    process = Popen(['.'+outpath],stdin=PIPE,stdout=PIPE)
+    process = Popen([outpath],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
+    os.remove(path)
+    os.remove(outpath)
     return process.decode('utf-8')
 
 

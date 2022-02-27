@@ -1,5 +1,3 @@
-import sys
-sys.path.append('../code')
 from .. import app
 import pytest, json
 

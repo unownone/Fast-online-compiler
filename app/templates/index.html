@@ -106,7 +106,7 @@
             },
             success: function(data){
                 data = data['response'];
-                $("#push").html(data.replace("\n","<br>"));
+                $("#push").html(data.replaceAll("\n","<br>"));
                 $("#loader").addClass("hidden");
                 $(".out").removeClass("hidden");
             }

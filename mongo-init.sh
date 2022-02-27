@@ -1,0 +1,1 @@
+mongo --eval "db = db.getSiblingDB('admin');db.auth('$MONGO_ROOT_USERNAME','$MONGO_ROOT_PASS');db.createUser({ user: '$MongoUserName', pwd: '$MongoPassWord', roles: [{ role: 'readWrite', db: '$MONGO_DB_NAME' }] });"

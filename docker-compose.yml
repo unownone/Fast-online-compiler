@@ -4,14 +4,16 @@ services:
     container_name: fast_mongodb
     image: mongo:latest
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: fast_compiler
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASS}
+      MONGO_INITDB_DATABASE: ${MONGO_DB_NAME}
+    env_file:
+      - .env
     ports:
       - "27017:27017"
     volumes:
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-      - ./db:/data/db
+      # - ./db:/data/db
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
   web:
     container_name: flask_compiler
     tty: true
@@ -20,10 +22,13 @@ services:
       - 5000
     volumes:
       - .:/code
+    env_file:
+      - .env
     environment:
       FLASK_ENV: production
     depends_on:
       - nginx
+      - mongodb_container
   nginx:
     container_name: nginx_compiler
     restart: always

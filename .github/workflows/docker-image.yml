@@ -26,6 +26,6 @@ jobs:
             #Move into directory
             cd Fast-online-compiler
             # fetch latest update
-            git fetch
+            git pull 
             # Stop running container
             docker-compose up -d --build

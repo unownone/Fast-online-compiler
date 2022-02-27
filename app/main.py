@@ -3,6 +3,8 @@ from app.compile import main, SUPPORTED_LANGS
 import traceback
 import json
 from app import app,login
+import time 
+from app.models import CodeArchives
 
 @app.get('/api/getLangs')
 def get_supported_languages():
@@ -21,12 +23,24 @@ def get_compiled_code():
         return jsonify({
         'response':'Server Doesnt support this type of content type'
         }, 400)
-    print("\n"*10,input) 
     try:
-        return jsonify({
-            'response': main(input.get('code',ret('code')),
+        # Timing The thing
+        t1 = time.time()
+        result = main(input.get('code',ret('code')),
                              input.get('lang',ret('lang')),
                              input.get('args',ret('args')))
+        t1 = round(time.time()-t1,3)
+        
+        CodeArchives.objects.create(
+                     code=input['code'],
+                     language=input['lang'],
+                     args=input['args'],
+                     output=result,
+                     CompileTime=t1
+        )
+        return jsonify({
+            'response': result,
+            'time':t1
         })
     except:
         traceback.print_exc()

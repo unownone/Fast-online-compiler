@@ -14,7 +14,7 @@ import os
 appConfig = {
     #MongoDB Configurations
     'MONGODB_SETTINGS':{
-        'db': 'fast_compiler',
+        'db': os.environ.get('MONGO_DB_NAME'),
         'host': 'mongodb_container',
         'port': 27017,
         'username':os.environ.get('MongoUserName'),

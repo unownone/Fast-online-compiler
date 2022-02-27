@@ -55,6 +55,7 @@ def runC(code,args=''):
     pathname = '/'.join((pp:=path.split('/'))[:-1])
     outpath = pathname+'/' + '.'.join(pp[-1].split('.')[:-1])
     process = Popen(['gcc',path,'-o',outpath],stdin=PIPE,stdout=PIPE)
+    time.sleep(1)
     process = Popen([outpath],stdin=PIPE,stdout=PIPE)
     process = process.communicate(bytes(args,'utf-8'))[0]
     os.remove(path)

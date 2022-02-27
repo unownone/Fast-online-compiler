@@ -2,7 +2,7 @@ env:
   REGISTRY: "registry.digitalocean.com/unownone"
   IMAGE_NAME: "fastcompiler"
 
-name: Test, Build and publish
+name: Published
 
 on:
   push:

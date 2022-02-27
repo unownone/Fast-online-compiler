@@ -1,6 +1,6 @@
 # Fast-Compiler
 [![Build and publish](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml/badge.svg)](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml)
-
+[![Test](https://github.com/unownone/Fast-online-compiler/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/unownone/Fast-online-compiler/actions/workflows/test.yml)
 # Demo:
 ### [Hosted at DigitalOcean](http://139.59.52.61/)
 <a href="https://youtu.be/eZSkH8Ox26k" title="Fast Compiler">

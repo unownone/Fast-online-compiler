@@ -26,7 +26,8 @@ jobs:
       - name: Build
         run: docker-compose up -d
       - name: Test
-        run: pytest --cov=app tests/ 
+        run: | 
+            python3 -m pytest --cov=app tests/ 
   
   deploy:
     runs-on: ubuntu-latest

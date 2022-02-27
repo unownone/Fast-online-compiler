@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create ENV
+        run: |
+            touch .env
+            echo MONGO_ROOT_USERNAME=dummy_username
+            echo MONGO_ROOT_PASS=dummy_password
+            echo MONGO_DB_NAME=dummy
+            MongoUserName=dumdum
+            MongoPassWord=Dum123b
+            cat .env
+      - name: Build
+        run: docker-compose up -d
+      - name: Test
+        run: | 
+            docker-compose run --rm  web pytest --cov=app tests/

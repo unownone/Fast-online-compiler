@@ -3,3 +3,5 @@
 frontend/
 /nginx/ssl
 /app/__pycache__
+.env
+/db

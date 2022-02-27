@@ -1,5 +1,17 @@
 version: "3.9"
 services:
+  mongodb_container:
+    container_name: fast_mongodb
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: fast_compiler
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./db:/data/db
   web:
     container_name: flask_compiler
     tty: true

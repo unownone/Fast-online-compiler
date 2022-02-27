@@ -1,10 +1,8 @@
 from flask import jsonify,request,render_template
 from app.compile import main, SUPPORTED_LANGS
 import traceback
-from flask import Flask
 import json
-
-app = Flask(__name__)
+from app import app,login
 
 @app.get('/api/getLangs')
 def get_supported_languages():
@@ -42,7 +40,9 @@ def ret(dat):
         'response':'Data Missing: '+dat
     })
 
+
 @app.route('/')
+@login.unauthorized_handler
 def garbage():
     return render_template('index.html')
 
@@ -54,4 +54,3 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   return response
-

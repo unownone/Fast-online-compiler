@@ -1,19 +1,19 @@
 import sys
 sys.path.append('../code')
-from app import app
+from .. import app
 import pytest, json
 
 
 @pytest.fixture
 def client():
     """Get Test Client"""
-    app.testing = True
+    app.app.testing = True
     return app.test_client()
 
 @pytest.fixture()
 def runner():
     """Get TestRunner"""
-    app.testing = True
+    app.app.testing = True
     return app.test_cli_runner()
 
 

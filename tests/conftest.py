@@ -1,17 +1,17 @@
-from .. import app
+from app import app
 import pytest, json
 
 
 @pytest.fixture
 def client():
     """Get Test Client"""
-    app.app.testing = True
+    app.testing = True
     return app.test_client()
 
 @pytest.fixture()
 def runner():
     """Get TestRunner"""
-    app.app.testing = True
+    app.testing = True
     return app.test_cli_runner()
 
 

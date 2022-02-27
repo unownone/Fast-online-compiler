@@ -48,6 +48,12 @@ def get_compiled_code():
             )
 
 
+def ret(dat):
+    return jsonify({
+        'response':'Data Missing: '+dat
+    })
+
+
 @app.route('/')
 @login.unauthorized_handler
 def garbage():

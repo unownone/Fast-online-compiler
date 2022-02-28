@@ -69,12 +69,12 @@
 <body>
 <div class="container justify-content-center" style="max-width:50%">
 <form id="formio" class="row" style="margin-top:10px">
-  <textarea oninput="auto_grow(this)" id="code" class="form-control" rows="1" columns="100" style="background-color:#2F4F4F;color:#e68f3e" id="comment" placeholder="Enter code"></textarea><br>
-  <textarea oninput="auto_grow(this)" id="args" class="form-control" rows="2" id="comment"  style="background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
-  <select class="form-select form-select-lg mb-3" name="language" id="lang" style="background-color:#2F4F4F;color:#e68f3e">
+  <textarea oninput="auto_grow(this)" id="code" class="form-control" rows="1" columns="100" style="border:none;background-color:#e68f3e;color:#2F4F4F" id="comment" placeholder="Enter code"></textarea><br>
+  <textarea oninput="auto_grow(this)" id="args" class="form-control" rows="2" id="comment"  style="border:none;background-color:#2F4F4F;color:#e68f3e" placeholder="Enter Arguments(if any)"></textarea><br>
+  <select class="form-select form-select-lg mb-3" name="language" id="lang" style="border:none;background-color:#2F4F4F;color:#e68f3e">
     <option value="">Select Language</option>
   </select>
-  <button type="button" class="btn btn-success" id="submit"><b>Compile</b></button>
+  <button type="button" class="btn btn-success" style="color: #000000;font-weight:bold;" id="submit"><b>Compile</b></button>
 </form>
 <div id="out" class="row" style="color:#e68f3e;background-color:#2F4F4F;">
     <p id="push"></a>

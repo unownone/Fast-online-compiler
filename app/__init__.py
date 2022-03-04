@@ -1,15 +1,16 @@
-from flask import Flask, g
+from flask import Flask, g, session
+from flask_session import Session
 from flask_login import current_user
 from flask_mongoengine import MongoEngine
 from flask_login import LoginManager
 # from authomatic import Authomatic
-from app import config
+from app.config import get_config
 
 app = Flask(__name__)
 
 # Configs for MongoDB
-app.config = {**app.config,**config.appConfig}
-
+app.config = get_config(app.config)
+Session(app)
 # Flask-login Config
 login = LoginManager(app)
 login.login_view = 'api/login'

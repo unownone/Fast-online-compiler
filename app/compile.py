@@ -1,5 +1,6 @@
 from subprocess import Popen,PIPE
 import time
+from concurrent.futures import ThreadPoolExecutor
 #########Provides helper functions to compile and return
 #########different codes , can be hotplugged with performance 
 #########metrics and other things
@@ -9,7 +10,7 @@ import time
 import os
 from uuid import uuid4
 
-def runPython(code,args=''):
+def runPython(code,args='',timeOut=10):
     path =f'/tmp/codes/python/{uuid4()}.py'
     if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
     with open(path,'w') as file:

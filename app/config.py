@@ -1,4 +1,4 @@
-from authomatic.providers import oauth2
+# from authomatic.providers import oauth2
 import os
 
 
@@ -11,13 +11,22 @@ import os
 #     }
 # }
 
-appConfig = {
-    #MongoDB Configurations
-    'MONGODB_SETTINGS':{
-        'db': os.environ.get('MONGO_DB_NAME'),
-        'host': 'mongodb_container',
-        'port': 27017,
-        'username':os.environ.get('MongoUserName'),
-        'password':os.environ.get('MongoPassWord'),
+def get_config(base_config):
+    appConfig = {
+        
+        **base_config,
+        
+        # Store session in filesystem
+        'SESSION_PERMANENT': False,
+        'SESSION_TYPE': 'filesystem',
+        
+        #MongoDB Configurations
+        'MONGODB_SETTINGS':{
+            'db': os.environ.get('MONGO_DB_NAME'),
+            'host': 'mongodb_container',
+            'port': 27017,
+            'username':os.environ.get('MongoUserName'),
+            'password':os.environ.get('MongoPassWord'),
+        }
     }
-}
+    return appConfig

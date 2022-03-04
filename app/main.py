@@ -1,9 +1,10 @@
-from flask import jsonify,request,render_template
+from flask import jsonify,request,render_template, session
 from app.compile import main, SUPPORTED_LANGS
 import traceback
 from app import app,login
 import time 
 from app.models import CodeArchives
+from app.decorators import rate_limiter
 
 @app.get('/api/getLangs')
 def get_supported_languages():
@@ -11,6 +12,7 @@ def get_supported_languages():
 
 
 @app.post('/api/compile')
+@rate_limiter
 def get_compiled_code():
     dataStream = {
         'application/json':request.json,
@@ -24,22 +26,19 @@ def get_compiled_code():
         }, 400)
     try:
         # Timing The thing
-        t1 = time.time()
-        result = main(input.get('code',ret('code')),
-                             input.get('lang',ret('lang')),
-                             input.get('args',ret('args')))
-        t1 = round(time.time()-t1,3)
-        
+        # Creating A Log 
         CodeArchives.objects.create(
                      code=input['code'],
                      language=input['lang'],
-                     args=input['args'],
-                     output=result,
-                     CompileTime=t1
+                     args=input['args']
         )
+        result = main(input.get('code',ret('code')),
+                             input.get('lang',ret('lang')),
+                             input.get('args',ret('args')))
+        
+
         return jsonify({
             'response': result,
-            'time':t1
         })
     except:
         traceback.print_exc()

@@ -5,3 +5,4 @@ frontend/
 /app/__pycache__
 .env
 /db
+/flask_session

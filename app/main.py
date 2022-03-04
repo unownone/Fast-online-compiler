@@ -30,7 +30,9 @@ def get_compiled_code():
         CodeArchives.objects.create(
                      code=input['code'],
                      language=input['lang'],
-                     args=input['args']
+                     args=input['args'],
+                     ip = request.remote_addr,
+                     
         )
         result = main(input.get('code',ret('code')),
                              input.get('lang',ret('lang')),

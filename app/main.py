@@ -28,13 +28,13 @@ def get_compiled_code():
         # Timing The thing
         # Creating A Log 
         CodeArchives.objects.create(
-                     code=input['code'],
-                     language=input['lang'],
-                     args=input['args'],           
+                     code=input.get('code',ret('code')),
+                     language=input.get('lang',ret('lang')),
+                     args=input.get('args',ret('args')),           
         )
-        result = main(input.get('code',ret('code')),
-                             input.get('lang',ret('lang')),
-                             input.get('args',ret('args')))
+        result = main(input['code'],
+                             input['lang'],
+                             input['args'])
         
 
         return jsonify({

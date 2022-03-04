@@ -1,5 +1,5 @@
 from app import app
-import pytest, json
+import pytest
 
 
 @pytest.fixture

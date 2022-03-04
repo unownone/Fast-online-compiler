@@ -1,4 +1,4 @@
-from flask import Flask, g, session
+from flask import Flask, g
 from flask_session import Session
 from flask_login import current_user
 from flask_mongoengine import MongoEngine
@@ -16,7 +16,6 @@ login = LoginManager(app)
 login.login_view = 'api/login'
 
 db = MongoEngine(app)
-from app import models
 
 # authomatic = Authomatic( CONFIG, os.environ.get('SECRET'))
 
@@ -33,6 +32,3 @@ def inject_user():
     except AttributeError:
         return {'user': None}
     
-
- # Import URLS
-from app import main

@@ -1,4 +1,3 @@
-import pytest
 
 def get_payload(code,language,args=''):
     return {

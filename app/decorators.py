@@ -2,7 +2,7 @@ from flask import request,session,jsonify
 import datetime
 import uuid
 
-def rate_limiter(func,count=1,time_period=10):
+def rate_limiter(func,count=5,time_period=10):
     """Decorator to limit the number of requests per time period
     Parameters:
             count: Number of requests allowed in a time period [default: 100]

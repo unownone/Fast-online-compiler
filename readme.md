@@ -50,7 +50,7 @@
     - body :
         - lang : ```string``` 
         - code : ```string```
-        - input : ```string``` [optional]
+        - args : ```string``` [optional]
     - Returns : ```{ response: String }```
 
 or

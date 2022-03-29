@@ -2,7 +2,7 @@
 [![Build and publish](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml/badge.svg)](https://github.com/unownone/Fast-online-compiler/actions/workflows/docker-image.yml)
 [![Test](https://github.com/unownone/Fast-online-compiler/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/unownone/Fast-online-compiler/actions/workflows/test.yml)
 # Demo:
-### [Hosted at DigitalOcean](http://139.59.52.61/)
+### [Hosted at DigitalOcean](http://174.138.123.57/)
 <a href="https://youtu.be/eZSkH8Ox26k" title="Fast Compiler">
   <p align="center">
     <img width="100%" src="https://i.ytimg.com/vi/eZSkH8Ox26k/mqdefault.jpg" alt="Fast compiler Demo"/>
@@ -55,7 +55,7 @@
 
 or
 
-## [Use Front End](http://139.59.52.61/) : 
+## [Use Front End](http://174.138.123.57/) : 
     at index : \
 ![compile](./demos/demo.gif)
 

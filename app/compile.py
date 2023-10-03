@@ -10,68 +10,39 @@ from concurrent.futures import ThreadPoolExecutor
 import os
 from uuid import uuid4
 
-def runPython(code,args='',timeOut=10):
-    path =f'/tmp/codes/python/{uuid4()}.py'
-    if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
-    with open(path,'w') as file:
+def compile_and_run(code, language, run_process, args=''):
+    path = f'/tmp/codes/{language.lower()}/{uuid4()}'
+    if not os.path.exists('/'.join(path.split('/')[:-1])):
+        os.makedirs('/'.join(path.split('/')[:-1]))
+    with open(path, 'w') as file:
         file.write(code)
-    process = Popen(['python3',path],stdin=PIPE,stdout=PIPE)
-    process = process.communicate(bytes(args,'utf-8'))[0]
-    os.remove(path)
-    return process.decode('utf-8')
-
-def runJava(code,args=''):
-    path =f'/tmp/codes/java/{uuid4()}.java'
-    if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
-    with open(path,'w') as file:
-        file.write(code)
-    print(path)
-    process = Popen(['javac',path],stdin=PIPE,stdout=PIPE)
-    process = Popen(['java',path],stdin=PIPE,stdout=PIPE)
-    process = process.communicate(bytes(args,'utf-8'))[0]
-    os.remove(path)
-    return process.decode('utf-8')
-
-def runCpp(code,args=''):
-    path =f'/tmp/codes/cpp/{uuid4()}.cpp'
-    if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
-    with open(path,'w') as file:
-        file.write(code)
-    pathname = '/'.join((pp:=path.split('/'))[:-1])
-    outpath = pathname+'/' + '.'.join(pp[-1].split('.')[:-1])
-    process = Popen(['g++',path,'-o',outpath],stdin=PIPE,stdout=PIPE)
-    time.sleep(1)
-    process = Popen([outpath],stdin=PIPE,stdout=PIPE)
-    process = process.communicate(bytes(args,'utf-8'))[0]
-    os.remove(path)
-    os.remove(outpath)
-    return process.decode('utf-8')
-
-def runC(code,args=''):
-    path =f'/tmp/codes/c/{uuid4()}.c'
-    print("\n\n\n",path,"\n\n\n")
-    if not os.path.exists('/'.join(path.split('/')[:-1])): os.makedirs('/'.join(path.split('/')[:-1]))
-    with open(path,'w') as file:
-        file.write(code)
-    pathname = '/'.join((pp:=path.split('/'))[:-1])
-    outpath = pathname+'/' + '.'.join(pp[-1].split('.')[:-1])
-    process = Popen(['gcc',path,'-o',outpath],stdin=PIPE,stdout=PIPE)
-    time.sleep(1)
-    process = Popen([outpath],stdin=PIPE,stdout=PIPE)
-    process = process.communicate(bytes(args,'utf-8'))[0]
-    os.remove(path)
-    os.remove(outpath)
-    return process.decode('utf-8')
+    process = None
+    for step in run_process:
+        command = step.get('command')
+        ext = step.get('ext')
+        use_args = step.get('USE_ARGS', False)
+        if command:
+            if process:  # If there's a previous process, wait for it to finish
+                process.wait()
+            process_args = [command]
+            if ext:
+                process_args.append(f'{path}{ext}')
+            if use_args:
+                process_args.append(args)
+            process = Popen(process_args, stdin=PIPE, stdout=PIPE)
+    if process:  # If there's a final process, get its output
+        output = process.communicate(bytes(args, 'utf-8'))[0]
+        return output.decode('utf-8')
 
 
-
-SUPPORTED_LANGS = {'Python':runPython,
-                   'Java':runJava,
-                   'C':runC,
-                   'C++':runCpp,
+SUPPORTED_LANGS = {
+        'Python': [{'command': 'python3', 'ext': '.py', 'USE_ARGS': True}],
+        'Java': [{'command': 'javac', 'ext': '.java'}, {'command': 'java', 'ext': '', 'USE_ARGS': True}],
+        'C++': [{'command': 'g++', 'ext': '.cpp'}, {'command': '', 'ext': '', 'USE_ARGS': True}],
+        'C': [{'command': 'gcc', 'ext': '.c'}, {'command': '', 'ext': '', 'USE_ARGS': True}]
 }
 
-def main(code:str,language:str,arguments:str='')-> str:
+def main(code:str, language:str, arguments:str='', run_process:dict={})-> str:
     if language not in SUPPORTED_LANGS:
         return "Language Not Supported"
-    return SUPPORTED_LANGS[language](code,arguments)
+    return compile_and_run(code, language, SUPPORTED_LANGS[language], arguments)
